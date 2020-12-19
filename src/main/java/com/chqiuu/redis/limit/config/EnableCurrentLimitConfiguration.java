@@ -53,6 +53,7 @@ public class EnableCurrentLimitConfiguration {
     }
 
     @Bean
+    @ConditionalOnMissingBean(name = "redisSerializer")
     public RedisSerializer<Object> redisSerializer() {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
