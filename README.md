@@ -197,19 +197,19 @@ public class LimiterController {
 1.  令牌桶算法<br>
 程序默认使用令牌桶算法进行限流，如果您要使用令牌桶算法的话无需要额外的配置。
 2.  计数器算法<br>
-如果您想要使用计数器算法的话，只需要增加一个配置即可。在配置文件中指定算法为计数器算法。（推荐您使用yml文件）
-        1. yml
-        ```yaml
-           current-limit:
-             algorithm: counter
-       ```
-        2. properties
-        ```properties
-               current-limit.algorithm= counter
-        ```
+    如果您想要使用计数器算法的话，只需要增加一个配置即可。在配置文件中指定算法为计数器算法。（推荐您使用yml文件）
+    1. yml配置方式
+    ```yaml
+    current-limit:
+      algorithm: counter
+    ```
+    2. properties配置方式
+    ```properties
+    current-limit.algorithm = counter
+    ```
 
 #### 再次开发
-> 如果您想使用别的算法，您可以[在这](https://github.com/chqiuu/spring-redis-current-limit)fork项目进行开发
+> 如果您想使用别的算法，您可以[fork项目进行开发](https://github.com/chqiuu/spring-redis-current-limit)
 
 #### 作者信息
 1. [个人博客](https://blog.csdn.net/QIU176161650)
