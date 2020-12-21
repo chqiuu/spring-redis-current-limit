@@ -14,7 +14,7 @@
 ### 1.  引入spring-redis-current-limit
 ```xml
 <dependency>
-    <groupId>com.chqiuu</groupId>
+    <groupId>com.github.chqiuu</groupId>
     <artifactId>spring-redis-current-limit</artifactId>
     <version>1.0.0</version>
  </dependency>

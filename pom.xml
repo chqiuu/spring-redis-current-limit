@@ -8,6 +8,7 @@
     <version>1.0.0</version>
     <name>spring-redis-current-limit</name>
     <description>基于注解的应用级网关限流框架</description>
+    <url>https://github.com/chqiuu/spring-redis-current-limit</url>
 
     <properties>
         <java.version>1.8</java.version>
@@ -69,10 +70,9 @@
         </license>
     </licenses>
     <scm>
-        <tag>master</tag>
-        <url>https://github.com/chqiuu/spring-redis-current-limit.git</url>
-        <connection>scm:git:https://github.com/chqiuu/spring-redis-current-limit.git</connection>
-        <developerConnection>scm:git:https://github.com/chqiuu/spring-redis-current-limit.git</developerConnection>
+        <connection>scm:git:git://github.com/chqiuu/spring-redis-current-limit.git</connection>
+        <developerConnection>scm:git:ssh://github.com/chqiuu/spring-redis-current-limit.git</developerConnection>
+        <url>https://github.com/chqiuu/spring-redis-current-limit/tree/main</url>
     </scm>
     <developers>
         <developer>
