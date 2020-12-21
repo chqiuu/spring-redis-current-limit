@@ -1,8 +1,8 @@
-package com.chqiuu.redis.limit.aspect;
+package com.github.chqiuu.redis.limit.aspect;
 
-import com.chqiuu.redis.limit.annotation.CurrentLimit;
-import com.chqiuu.redis.limit.exception.CurrentLimitException;
-import com.chqiuu.redis.limit.strategy.BaseCurrentLimiter;
+import com.github.chqiuu.redis.limit.annotation.CurrentLimit;
+import com.github.chqiuu.redis.limit.exception.CurrentLimitException;
+import com.github.chqiuu.redis.limit.strategy.BaseCurrentLimiter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

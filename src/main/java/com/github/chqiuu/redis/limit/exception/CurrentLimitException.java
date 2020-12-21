@@ -1,4 +1,4 @@
-package com.chqiuu.redis.limit.exception;
+package com.github.chqiuu.redis.limit.exception;
 
 /**
  * 限流异常信息类

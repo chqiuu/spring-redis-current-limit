@@ -1,6 +1,6 @@
-package com.chqiuu.redis.limit.config;
+package com.github.chqiuu.redis.limit.config;
 
-import com.chqiuu.redis.limit.Constant;
+import com.github.chqiuu.redis.limit.Constant;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

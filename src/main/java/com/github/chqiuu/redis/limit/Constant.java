@@ -1,4 +1,4 @@
-package com.chqiuu.redis.limit;
+package com.github.chqiuu.redis.limit;
 
 /**
  * 全局静态常量类

@@ -2,7 +2,7 @@
 ***
 
 ## 项目介绍
-> 此项目为一个无侵入的应用级网关限流框架,如果您正在寻找一个网关限流的框架，使用spring-redis-current-limit是最明智的选择
+> 此项目是基于Spring Redis Lua为一个无侵入的应用级网关限流框架,如果您正在寻找一个网关限流的框架，使用spring-redis-current-limit是最明智的选择
 
 ### 为什么选择spring-redis-current-limit
 1. 无需任何复杂配置文件，一个注解玩转spring-redis-current-limit<br>

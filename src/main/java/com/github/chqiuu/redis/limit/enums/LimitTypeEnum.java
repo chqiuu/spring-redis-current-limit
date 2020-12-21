@@ -1,4 +1,4 @@
-package com.chqiuu.redis.limit.enums;
+package com.github.chqiuu.redis.limit.enums;
 
 /**
  * 限流类型

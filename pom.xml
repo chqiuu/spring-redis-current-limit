@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.chqiuu</groupId>
+    <groupId>com.github.chqiuu</groupId>
     <artifactId>spring-redis-current-limit</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0</version>
@@ -74,7 +74,14 @@
         <connection>scm:git:https://github.com/chqiuu/spring-redis-current-limit.git</connection>
         <developerConnection>scm:git:https://github.com/chqiuu/spring-redis-current-limit.git</developerConnection>
     </scm>
-
+    <developers>
+        <developer>
+            <name>chqiuu</name>
+            <email>chqiuu@qq.com</email>
+            <organization>chqiuu</organization>
+            <organizationUrl>https://github.com/chqiuu</organizationUrl>
+        </developer>
+    </developers>
     <build>
         <plugins>
             <plugin>
@@ -162,10 +169,11 @@
             </plugin>
         </plugins>
     </build>
+    <!-- 【注】snapshotRepository 与 repository 中的 id 一定要与 setting.xml 中 server 的 id 保持一致！ -->
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
             <id>ossrh</id>

@@ -1,7 +1,7 @@
-package com.chqiuu.redis.limit.annotation;
+package com.github.chqiuu.redis.limit.annotation;
 
 
-import com.chqiuu.redis.limit.enums.LimitTypeEnum;
+import com.github.chqiuu.redis.limit.enums.LimitTypeEnum;
 
 import java.lang.annotation.*;
 

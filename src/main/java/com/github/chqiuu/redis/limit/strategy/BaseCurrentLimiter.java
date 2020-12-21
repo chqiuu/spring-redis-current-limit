@@ -1,9 +1,9 @@
-package com.chqiuu.redis.limit.strategy;
+package com.github.chqiuu.redis.limit.strategy;
 
 import cn.hutool.extra.servlet.ServletUtil;
-import com.chqiuu.redis.limit.Constant;
-import com.chqiuu.redis.limit.enums.LimitTypeEnum;
-import com.chqiuu.redis.limit.exception.CurrentLimitException;
+import com.github.chqiuu.redis.limit.Constant;
+import com.github.chqiuu.redis.limit.enums.LimitTypeEnum;
+import com.github.chqiuu.redis.limit.exception.CurrentLimitException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.web.context.request.RequestContextHolder;

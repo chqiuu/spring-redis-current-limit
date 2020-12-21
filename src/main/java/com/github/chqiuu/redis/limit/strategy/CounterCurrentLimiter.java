@@ -1,8 +1,8 @@
-package com.chqiuu.redis.limit.strategy;
+package com.github.chqiuu.redis.limit.strategy;
 
 import cn.hutool.core.util.StrUtil;
-import com.chqiuu.redis.limit.Constant;
-import com.chqiuu.redis.limit.enums.LimitTypeEnum;
+import com.github.chqiuu.redis.limit.Constant;
+import com.github.chqiuu.redis.limit.enums.LimitTypeEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -15,38 +15,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 命令桶算法限流实现
+ * 计数器算法限流实现
  *
  * @author chqiu
  */
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@ConditionalOnProperty(prefix = Constant.PREFIX, name = "algorithm", havingValue = "token", matchIfMissing = true)
-public class TokenBucketCurrentLimiter extends BaseCurrentLimiter {
-
+@ConditionalOnProperty(prefix = Constant.PREFIX, name = "algorithm", havingValue = "counter")
+public class CounterCurrentLimiter extends BaseCurrentLimiter {
     private final RedisTemplate<String, Object> redisTemplate;
-    private final DefaultRedisScript<Long> tokenBucketRedisScript;
+    private final DefaultRedisScript<Long> counterRedisScript;
 
     private boolean check(String key, long limit, long interval, long step) {
-        //  命令桶算法限流实现
         List<String> keyList = new ArrayList<>();
         keyList.add(key);
         keyList.add(String.valueOf(limit));
-        keyList.add(String.valueOf(step));
         keyList.add(String.valueOf(interval));
-        keyList.add(String.valueOf(System.currentTimeMillis() / 1000));
-        Long executeTimes = redisTemplate.execute(tokenBucketRedisScript, keyList, keyList);
+        Long executeTimes = redisTemplate.execute(counterRedisScript, keyList, keyList);
         if (executeTimes != null) {
             if (executeTimes <= 0) {
-                //    log.error("【{}】在单位时间 {} 秒内已达到访问上限，当前接口上限 {}", key, interval, limit);
+                // log.error("【{}】在单位时间 {} 秒内已达到访问上限，当前接口上限 {}", key, interval, limit);
                 return false;
             } else {
-                //   log.info("【{}】在单位时间 {} 秒内还可访问 {} 次", key, interval, executeTimes - 1);
+                //  log.info("【{}】在单位时间 {} 秒内可访问 {} 次", key, interval, executeTimes - 1);
                 return true;
             }
         } else {
-            log.error("其他错误：【{}】在单位时间 {} 秒内已达到访问上限，当前接口上限 {}", key, interval, limit);
+            log.error("限流服务器错误：【{}】在单位时间 {} 秒内已达到访问上限，当前接口上限 {}", key, interval, limit);
             return false;
         }
     }

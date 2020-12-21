@@ -1,6 +1,6 @@
-package com.chqiuu.redis.limit.annotation;
+package com.github.chqiuu.redis.limit.annotation;
 
-import com.chqiuu.redis.limit.config.EnableCurrentLimitConfiguration;
+import com.github.chqiuu.redis.limit.config.EnableCurrentLimitConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
