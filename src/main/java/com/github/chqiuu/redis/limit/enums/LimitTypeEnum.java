@@ -27,6 +27,14 @@ public enum LimitTypeEnum {
      */
     USER_GLOBAL,
     /**
+     * 根据Session限流。此方法（或类）单位时间内只允许此 SessionId 访问n次
+     */
+    SESSION,
+    /**
+     * 根据Session限流。此系统中所有限流方法（或类）单位时间内只允许此 SessionId 访问n次
+     */
+    SESSION_GLOBAL,
+    /**
      * 自定义限流方法，详细使用请参考使用文档
      */
     CUSTOM

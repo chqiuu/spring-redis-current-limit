@@ -46,6 +46,25 @@ public abstract class BaseCurrentLimiter {
         assert requestAttributes != null;
         HttpServletRequest request = requestAttributes.getRequest();
         switch (limitType) {
+            case SESSION_GLOBAL:
+                // 以SessionId作为key
+                if (request.getSession() != null) {
+                    key.append(request.getSession().getId());
+                } else {
+                    throw new CurrentLimitException("获取不到用户Session，request.getSession().getId()为空");
+                }
+                break;
+            case SESSION:
+                // 以SessionId加方法（或类）作为key
+                if (request.getSession() != null) {
+                    key.append(request.getSession().getId());
+                    if (isMethod) {
+                        key.append(getMethodName((MethodSignature) joinPoint.getSignature()));
+                    }
+                } else {
+                    throw new CurrentLimitException("获取不到用户Session，request.getSession().getId()为空");
+                }
+                break;
             case USER_GLOBAL:
                 // 以用户信息作为key
                 if (request.getUserPrincipal() != null) {

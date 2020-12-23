@@ -16,7 +16,7 @@
 <dependency>
     <groupId>com.github.chqiuu</groupId>
     <artifactId>spring-redis-current-limit</artifactId>
-    <version>1.0.0</version>
+    <version>Latest Version</version>
  </dependency>
 ```
 ### 2.  注册spring-redis-current-limit
@@ -214,6 +214,11 @@ public class LimiterController {
 #### 作者信息
 1. [个人博客](https://blog.csdn.net/QIU176161650)
 2. [GitHub](https://github.com/chqiuu)
+
+#### 参考
+
+[将JAR包发布到Maven中央仓库](https://blog.csdn.net/liaomin416100569/article/details/86494819)
+[在Maven中央存储库中发布github项目](https://blog.csdn.net/weixin_26711867/article/details/108946638)
 
 #### 版本信息
 

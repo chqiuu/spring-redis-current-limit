@@ -27,7 +27,7 @@ import org.springframework.scripting.support.ResourceScriptSource;
  */
 @Slf4j
 @Configuration
-@ComponentScan(basePackages = "com.chqiuu.redis.limit")
+@ComponentScan(basePackages = "com.github.chqiuu.redis.limit")
 public class EnableCurrentLimitConfiguration {
 
     /**

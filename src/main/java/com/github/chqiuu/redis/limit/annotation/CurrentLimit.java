@@ -2,6 +2,7 @@ package com.github.chqiuu.redis.limit.annotation;
 
 
 import com.github.chqiuu.redis.limit.enums.LimitTypeEnum;
+import com.github.chqiuu.redis.limit.enums.TypeLimitModelEnum;
 
 import java.lang.annotation.*;
 
@@ -55,4 +56,11 @@ public @interface CurrentLimit {
      * 设置限流类型。默认值：LOCAL
      */
     LimitTypeEnum limitType() default LimitTypeEnum.LOCAL;
+
+    /**
+     * 设置在类上设置注解限流模式，当为ElementType.TYPE时有效
+     *
+     * @return 在类上设置注解限流模式
+     */
+    TypeLimitModelEnum typeLimitModel() default TypeLimitModelEnum.EACH;
 }

@@ -5,7 +5,7 @@
     <groupId>com.github.chqiuu</groupId>
     <artifactId>spring-redis-current-limit</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.3</version>
     <name>spring-redis-current-limit</name>
     <description>基于注解的应用级网关限流框架</description>
     <url>https://github.com/chqiuu/spring-redis-current-limit</url>

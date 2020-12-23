@@ -1,6 +1,7 @@
 package com.github.chqiuu.redis.limit.aspect;
 
 import com.github.chqiuu.redis.limit.annotation.CurrentLimit;
+import com.github.chqiuu.redis.limit.enums.TypeLimitModelEnum;
 import com.github.chqiuu.redis.limit.exception.CurrentLimitException;
 import com.github.chqiuu.redis.limit.strategy.BaseCurrentLimiter;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
- * 限流切面实现（对象）
+ * 限流切面实现（类）
  * 对象切面优先于方法切面
  *
  * @author chqiu
@@ -23,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @AllArgsConstructor
-public class ObjectCurrentLimitAspect {
+public class TypeCurrentLimitAspect {
 
     private final BaseCurrentLimiter currentLimiter;
 
@@ -44,7 +45,11 @@ public class ObjectCurrentLimitAspect {
      */
     @Before(value = "withinPointcut(currentLimit)", argNames = "joinPoint,currentLimit")
     public void doWithinBefore(JoinPoint joinPoint, CurrentLimit currentLimit) {
-        boolean isAllowAccess = currentLimiter.check(joinPoint, true, currentLimit.key(), currentLimit.limitType(), currentLimit.limit(), currentLimit.interval(), currentLimit.step());
+        boolean isMethod = true;
+        if (TypeLimitModelEnum.TOTAL.equals(currentLimit.typeLimitModel())) {
+            isMethod = false;
+        }
+        boolean isAllowAccess = currentLimiter.check(joinPoint, isMethod, currentLimit.key(), currentLimit.limitType(), currentLimit.limit(), currentLimit.interval(), currentLimit.step());
         if (!isAllowAccess) {
             throw new CurrentLimitException(currentLimit.message());
         }
