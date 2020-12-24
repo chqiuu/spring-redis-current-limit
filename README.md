@@ -49,11 +49,6 @@ spring:
     host: 
     port: 
     password:
-    pool:
-      max-active: 8
-      max-wait: 1
-      max-idle: 8
-      min-idle: 0
     timeout: 2000
 ```
 #### 2. Spring应用
@@ -127,6 +122,13 @@ public @interface CurrentLimit {
      * 设置限流类型。默认值：LOCAL
      */
     LimitTypeEnum limitType() default LimitTypeEnum.LOCAL;
+
+    /**
+     * 设置在类上设置注解限流模式，当为ElementType.TYPE时有效
+     *
+     * @return 在类上设置注解限流模式
+     */
+    TypeLimitModelEnum typeLimitModel() default TypeLimitModelEnum.EACH;
 }
 ```
 来几个使用的例子吧<br>
