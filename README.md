@@ -132,21 +132,23 @@ public @interface CurrentLimit {
 }
 ```
 来几个使用的例子吧<br>
-1. 限流一个Controller中的所有接口。（例如，需要每个方法每30秒只允许调用10次）<br>
+1. 限流一个Controller中的所有接口。（例如，需要每个方法每5秒只允许调用3次）<br>
 ```java
-@CurrentLimit(interval = 30, limit = 10, message = "class，您的手速太快了，请稍后再试")
+@CurrentLimit(interval = 5, limit = 3, message = "在类上做限流，每个接口每5秒只能访问3次，您已经超过3次访问，请稍后再试")
 @RestController
-@RequestMapping("/object")
-public class ObjectCurrentLimitController {
+@RequestMapping("/type/each")
+public class TypeEachCurrentLimitController {
+    private static final AtomicInteger ATOMIC_INTEGER_HAVE_PARAM = new AtomicInteger();
+    private static final AtomicInteger ATOMIC_INTEGER_NO_PARAM = new AtomicInteger();
 
-    @PostMapping("/havaParam")
-    public void havaParam(@RequestBody Map<String, String> map) {
-        System.out.println("业务代码havaParam……");
+    @GetMapping("/haveParam")
+    public String haveParam(String param) {
+        return String.format("第%s次访问【param:%s】，成功获得数据！", ATOMIC_INTEGER_HAVE_PARAM.incrementAndGet(), param);
     }
 
     @GetMapping("/noParam")
-    public void noParam() {
-        System.out.println("业务代码noParam……");
+    public String noParam() {
+        return String.format("第%s次访问，成功获得数据！", ATOMIC_INTEGER_NO_PARAM.incrementAndGet());
     }
 }
 ```
@@ -158,36 +160,55 @@ public class ObjectCurrentLimitController {
 
 4.  限流某个方法的并发数
 ```java
-@CurrentLimit(interval = 20, limit = 6, message = "class，您的手速太快了，请稍后再试")// 对当前这个类进行整体限流
 @RestController
-public class LimiterController {
-    private static final AtomicInteger ATOMIC_INTEGER_1 = new AtomicInteger();
-    private static final AtomicInteger ATOMIC_INTEGER_2 = new AtomicInteger();
-    private static final AtomicInteger ATOMIC_INTEGER_3 = new AtomicInteger();
+@RequestMapping("/method")
+public class MethodLimiterController {
+    private static final AtomicInteger ATOMIC_INTEGER_LOCAL = new AtomicInteger();
+    private static final AtomicInteger ATOMIC_INTEGER_IP = new AtomicInteger();
+    private static final AtomicInteger ATOMIC_INTEGER_USER = new AtomicInteger();
+    private static final AtomicInteger ATOMIC_INTEGER_SESSION = new AtomicInteger();
+    private static final AtomicInteger ATOMIC_INTEGER_CUSTOM = new AtomicInteger();
 
-    @CurrentLimit(interval = 20, limit = 5, message = "ALL，您的手速太快了，请稍后再试")// 对这个方法进行整体限流
-    @GetMapping("/limitTest1")
-    public int testLimiter1() {
-        return ATOMIC_INTEGER_1.incrementAndGet();
+    @CurrentLimit(interval = 5, limit = 3, message = "此方法对所有来源的请求都限流，5秒只能访问3次，您已经超过3次访问，请稍后再试")
+    @GetMapping("/local")
+    public String local() {
+        return String.format("第%s次访问，成功获得数据！", ATOMIC_INTEGER_LOCAL.incrementAndGet());
     }
 
-    @CurrentLimit(interval = 20, limit = 3, limitType = LimitTypeEnum.CUSTOM)// 对这个方法进行自定义限流
-    @GetMapping("/limitTest2")
-    public int testLimiter2(HttpServletRequest request) {
+    @CurrentLimit(interval = 5, limit = 3
+            , message = "此方法访问根据IP限流，5秒只能访问3次，您已经超过3次访问，请稍后再试")
+    @GetMapping("/ip")
+    public String ip() {
+        return String.format("第%s次访问，成功获得数据！", ATOMIC_INTEGER_IP.incrementAndGet());
+    }
+
+    @CurrentLimit(interval = 5, limit = 3
+            , message = "此方法访问根据用户限流，5秒只能访问3次，您已经超过3次访问，请稍后再试")
+    @GetMapping("/user")
+    public String user() {
+        return String.format("第%s次访问，成功获得数据！", ATOMIC_INTEGER_USER.incrementAndGet());
+    }
+
+    @CurrentLimit(interval = 5, limit = 3
+            , message = "此方法访问根据Session限流，5秒只能访问3次，您已经超过3次访问，请稍后再试")
+    @GetMapping("/session")
+    public String session() {
+        return String.format("第%s次访问，成功获得数据！", ATOMIC_INTEGER_SESSION.incrementAndGet());
+    }
+
+    @CurrentLimit(interval = 5, limit = 3, limitType = LimitTypeEnum.CUSTOM
+            , message = "此方法为自定义限流，5秒只能访问3次，您已经超过3次访问，请稍后再试")
+    @GetMapping("/custom")
+    public String testLimiter2(HttpServletRequest request) {
         //根据一系列操作查出来了用户id
         //限流时在httpServletRequest中根据Const.CUSTOM的值进行限流
-        request.setAttribute(Constant.CUSTOM, "用户id");
-        return ATOMIC_INTEGER_2.incrementAndGet();
-    }
-
-    @CurrentLimit(interval = 20, limit = 5, limitType = LimitTypeEnum.IP, message = "IP，您的手速太快了，请稍后再试") // 对这个方法进行IP限流
-    @GetMapping("/limitTest3")
-    public int testLimiter3() {
-        return ATOMIC_INTEGER_3.incrementAndGet();
+        request.setAttribute(Constant.CUSTOM, "user_id");
+        return String.format("第%s次访问，成功获得数据！", ATOMIC_INTEGER_CUSTOM.incrementAndGet());
     }
 }
 ```
 
+5. 更多示例请移步[演示示例](https://github.com/chqiuu/spring-redis-current-limit/tree/main/spring-redis-current-limit-demo)
 
 ## 更多信息
 

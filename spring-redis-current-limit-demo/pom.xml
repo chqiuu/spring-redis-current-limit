@@ -11,7 +11,7 @@
     </parent>
     <groupId>com.github.chqiuu</groupId>
     <artifactId>spring-redis-current-limit-demo</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <description>基于注解的应用级网关限流框架演示示例</description>
     <url>https://github.com/chqiuu/spring-redis-current-limit</url>
 
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>com.github.chqiuu</groupId>
             <artifactId>spring-redis-current-limit</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
     </dependencies>
     <build>

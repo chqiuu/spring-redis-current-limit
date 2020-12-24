@@ -7,11 +7,11 @@
     <parent>
         <groupId>com.github.chqiuu</groupId>
         <artifactId>spring-redis-current-limit-parent</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5</version>
     </parent>
 
     <artifactId>spring-redis-current-limit</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <name>${project.artifactId}</name>
     <description>基于注解的应用级网关限流框架</description>
     <url>https://github.com/chqiuu/spring-redis-current-limit</url>
