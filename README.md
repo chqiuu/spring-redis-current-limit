@@ -245,5 +245,5 @@ public class MethodLimiterController {
 
 #### 版本信息
 
-#####  1.0.0
+#####  1.0.5
 >spring-redis-current-limit 正式上线
